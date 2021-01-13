@@ -1,0 +1,4 @@
+- find: //*[@resource-id='com.xueqiu.android:id/search_input_text']
+  action: send
+  by: By.XPATH
+  content: xxx

@@ -1,3 +1,4 @@
+import allure,logging
 from selenium.common.exceptions import NoSuchElementException
 
 
@@ -5,8 +6,13 @@ def black_a(fun):
     def run(*args,**kwargs):
         basepage=args[0]
         try:
+            logging.info("start find: \nargs: " + str(args) + " kwargs: " + str(kwargs))
             return fun(*args,**kwargs)
         except NoSuchElementException as e:
+            basepage.screenshot("nosuchelement.png")
+            with open("./nosuchelement.png","rb") as f:
+                picture_data=f.read()
+            allure.attach(picture_data,attachment_type=allure.attachment_type.PNG)
             for black in basepage.black_list:
                 value = basepage.driver.find_element(*black)
                 if value != None:

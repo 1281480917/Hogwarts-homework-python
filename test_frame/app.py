@@ -22,7 +22,6 @@ class App(BasePage):
         else:
             self.driver.launch_app()
             # self.driver.start_activity(package,activity)
-
         return self
 
     def restart(self):

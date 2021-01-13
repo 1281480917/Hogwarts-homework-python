@@ -1,5 +1,6 @@
 import logging
 
+import yaml
 from appium.webdriver import WebElement
 from appium.webdriver.common.mobileby import MobileBy
 from appium.webdriver.webdriver import WebDriver
@@ -54,7 +55,27 @@ class BasePage:
         driver.implicitly_wait(5)
         return elements[0]
 
+    def screenshot(self, picture_path):
+        self.driver.save_screenshot(picture_path)
     def get_toast_text(self):
         result = self.find(MobileBy.XPATH, "//*[@class='android.widget.Toast']").text
         logging.info(result)
         return result
+    def send(self, by, locator, content):
+        self.find(by, locator).send_keys(content)
+    def load(self,yaml_path):
+        with open(yaml_path,'r',encoding='utf-8') as f:
+            data=yaml.load(f)
+        print(data)
+        for step in data:
+            find=step['find']
+            action=step['action']
+            by=eval(step['by'])
+            print(by)
+            if action=='find_and_click':
+                self.find_and_click(by,find)
+            elif action=='send':
+                content=step['content']
+                self.send(by,find,content)
+if __name__ == '__main__':
+    BasePage().load('page/search.yaml')
