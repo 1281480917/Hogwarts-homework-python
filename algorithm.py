@@ -70,7 +70,7 @@ def fibonacci(num):
     F0 = 0 (n=0)
     F1 = 1 (n=1)
     Fn = F[n-1]+ F[n-2](n=>2)
-    :param num:
+    :param num:月
     :return:
     '''
     if num==1 or num==2:
@@ -113,7 +113,7 @@ def quick_sort(lists,i,j):
      :return:
      '''
     if i >= j:
-        return list
+        return lists
     pivot = lists[i]
     low = i
     high = j
@@ -135,16 +135,93 @@ if __name__ == '__main__':
     print(l)
 
 
+def duplicate(mylist):
+    '''
+    找出列表中的重复数字
+    :param mylist:
+    :return:
+    '''
+    myset = set(mylist)
+    for i in myset:
+        count = mylist.count(i)
+        if count > 1:
+            print(i, count)
 
 
+if __name__ == '__main__':
+    mylist = [2, 1, 4, 5, 4, 3, 2, 2]
+    duplicate(mylist)
 
 
+def find_single(mylist):
+    '''
+     找出列表中的单个数字
+    :param mylist:
+    :return:
+    '''
+    myset = set(mylist)
+    for i in myset:
+        count = mylist.count(i)
+        if count == 1:
+            print(i, count)
 
 
+if __name__ == '__main__':
+    mylist = [2, 1, 4, 5, 4, 3, 2, 2]
+    find_single(mylist)
 
-#4. 使用 Python 实现一个斐波那契数列
-#5. 找出列表中的重复数字
-#6. 找出列表中的单个数字
-#7. 写一个冒泡排序
-#8. 写一个快速排序
-#Python 实现一个二进制计算
+# 列表转换为字典
+a = [1, 2, 3]
+b = [4, 5, 6]
+ziped = zip(a, b)
+for i in ziped:
+    print(i)
+print(dict(ziped))
+# 字符串反转输出
+str = '123456'
+print(str[::-1])
+# 找出驼峰数组的最大值
+li = [1, 2, 10, 10, 2, 1]
+print([v for v in li if v == max(li)])
+
+
+def get_file(path, rule=''):
+    '''
+    目录遍历
+    :param path:遍历路径
+    :param rule: 匹配特定后缀结尾的文件
+    :return:
+    '''
+    import os
+    files = []
+    for path, dirs, fs in os.walk(path):
+        for f in fs:
+            if os.path.join(path, f).endswith(rule):
+                files.append(f)
+    return files
+
+
+if __name__ == '__main__':
+    print(get_file('D:\学习总结'))
+# def mi(a,n):
+#     '''
+#     幂的递归
+#     递归实现x的n次方时，其思想（或者递推式）一般如下：
+#     X^n = X * X^n-1(n > 0);
+#     X^n = 1(n = 0）
+#     :param a:
+#     :param n:
+#     :return:
+#     '''
+#     if n==0:
+#         return 1
+#     return a*mi(a,n-1)
+# if __name__ == '__main__':
+#     a=[1,2,3]
+#     print(mi(a,2))
+# #4. 使用 Python 实现一个斐波那契数列
+# 5. 找出列表中的重复数字
+# 6. 找出列表中的单个数字
+# 7. 写一个冒泡排序
+# 8. 写一个快速排序
+# Python 实现一个二进制计算
